@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres
+    container_name: postgres-somesh
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_DB=testdb
+    ports:
+      - "5431:5432"
+  node-app:
+    build: .
+    ports:
+      - "3000:3000"
+    container_name: node-app
+    depends_on:
+      - postgres
